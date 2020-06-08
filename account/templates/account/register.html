@@ -1,0 +1,37 @@
+{% extends 'athletix/base.html' %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="row justify-content-md-center">
+    <form class="form col-md-8" method="post">
+        {% csrf_token %}
+        <fieldset class="form-group mb-0">
+            <legend class="mb-2 py-4 athletix-official-font text-white text-center banner-background">
+                Registration Form
+            </legend>
+            <div class="row justify-content-md-center bg-white mx-1">
+                <div class="col-md-8">
+                    {{ form|crispy}}
+                </div>
+            </div>
+        </fieldset>
+        <div class="row justify-content-md-center form-group bg-white mx-1 py-2 border-radius-bottom">
+            <div class="col-md-8">
+                <button class="btn btn-outline-secondary athletix-official-font" type="submit">Register</button>
+                <div class="border-top mt-2 py-2 text-muted">
+                    Already a User? <a href="{% url 'login-page' %}"
+                                       class="no-text-decoration athletix-heading-font">Login</a>
+                </div>
+            </div>
+        </div>
+    </form>
+
+<!--    <div class="col-md-4">-->
+<!--        <a href="#">-->
+<!--            <img src="{% static 'images/equipments.gif' %}" class="col-md-12 mt-2">-->
+<!--            <img src="{% static 'images/equipments.gif' %}" class="col-md-12 mt-4">-->
+<!--        </a>-->
+<!--    </div>-->
+</div>
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends 'athletix/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="row mt-2">
+    <div class="col-md-10">
+    {% if posts.count > 0 %}
+    {% for post in posts %}
+        <div class="row bg-white border border-muted p-3 mb-2 mx-1">
+            <div class="col-md-1 mt-1 mb-4">
+                {% if user.profile.image %}
+                <img src="{{ post.author.profile.image.url }}" class="img img-responsive comment-section-user-icon">
+                {% else %}
+                <span class="user-icon-text text-dark text-uppercase pt-2">{{ post.author.username|make_list|first}}</span>
+                {% endif %}
+            </div>
+            <div class="col-md-11">
+                <div class="row">
+                    <div class="col-md-9">
+                        <h4><a href="#" class="no-text-decoration text-dark">{{post.title}}</a></h4>
+                        <span class="fa fa-clock-o mr-1"></span>
+                        <small>
+                            <i>Posted by <b>{{post.author}}</b> on <b>{{post.posted_on | date:'M d, Y'}}</b></i>
+                        </small>
+                    </div>
+                                {% if user.is_authenticated %}
+                                <div class="col-md-3 pl-0">
+                                    <div class="row mt-2 d-flex justify-content-end">
+                                        <div class="pl-0 mb-2 mr-3">
+                                            <span class="fa fa-thumbs-up text-success" title="Like"></span>
+                                            <b class="font-small">100</b>
+                                        </div>
+                                        <div class="pl-0 mb-2 mr-3">
+                                            <span class="fa fa-thumbs-down text-danger" title="Disike"></span>
+                                            <b class="font-small">2</b>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="text-justify">{{ post.content|safe|truncatewords:"50" }}
+                            {% if post.content|length > 50 %}
+                                <a href="#" class="no-text-decoration">read more</a>
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="row bg-white border border-muted p-3 mb-2">
+            <div class="col text-center no-products">
+                <h1>No Posts Available</h1>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="col-md-2">
+        <div class="bg-white border border-mute p-2">
+            <h5 class="mb-2 font-bold">Post Filter</h5>
+            <hr class="mb-0">
+            <small class="font-bold">Sort By</small>
+            <select class="form form-control mb-4">
+                <option value="">All</option>
+                <option value="">This Week</option>
+                <option value="">This Month</option>
+                <option value="">Likes</option>
+            </select>
+
+            <div>
+                <form method="get" class="form" id="search-filter">
+                    {{ search_filter.form|crispy }}
+                    <button class="btn btn-primary btn-sm" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

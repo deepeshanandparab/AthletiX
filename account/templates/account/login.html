@@ -1,0 +1,32 @@
+{% extends 'athletix/base.html' %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="row justify-content-md-center mt-4">
+    <form class="form col-md-8" method="post">
+        {% csrf_token %}
+        <fieldset class="form-group mb-0">
+            <legend class="py-4 athletix-official-font text-white text-center banner-background">
+                Login
+            </legend>
+            <div class="row justify-content-md-center bg-white mx-1">
+                <div class="col-md-8">
+                {{ form|crispy}}
+                    </div>
+            </div>
+        </fieldset>
+        <div class="row justify-content-md-center form-group bg-white mx-1 py-2 border-radius-bottom">
+            <div class="col-md-8">
+            <button class="btn btn-outline-secondary athletix-official-font" type="submit">Login</button>
+                <a href="#" class="text-muted no-text-decoration">Forgot Password?</a>
+            <div class="border-top mt-2 py-2 text-muted">
+                Not registered yet? <a href="{% url 'register-page' %}"
+                                       class="no-text-decoration athletix-heading-font">Register</a>
+            </div>
+                </div>
+        </div>
+
+    </form>
+</div>
+{% endblock %}

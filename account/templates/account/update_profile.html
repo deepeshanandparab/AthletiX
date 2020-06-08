@@ -1,0 +1,27 @@
+{% extends 'athletix/base.html' %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="row justify-content-md-center mt-4">
+    <form class="form col-md-8" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <fieldset class="form-group mb-0">
+            <legend class="py-4 athletix-official-font text-white text-center banner-background">
+                Update Profile
+            </legend>
+            <div class="row justify-content-md-center bg-white mx-1">
+                <div class="col-md-8">
+                    {{ user_form|crispy}}
+                    {{ profile_form|crispy}}
+                </div>
+            </div>
+        </fieldset>
+        <div class="row justify-content-md-center form-group bg-white mx-1 py-2 border-radius-bottom">
+            <div class="col-md-8">
+                <button class="btn btn-outline-secondary athletix-official-font" type="submit">Update</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

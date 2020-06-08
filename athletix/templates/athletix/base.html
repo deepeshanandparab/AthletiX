@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="{% static 'images/title_icon.png' %}" type="image/x-icon"/>
+    <link href="https://fonts.googleapis.com/css?family=Sonsie+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <!-- Font Awesome -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    {% if title %}
+        <title>AthletiX | {{title}}</title>
+    {% else %}
+        <title>AthletiX</title>
+    {% endif %}
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-athletix-blue no-padding-top-lg no-padding-bottom-lg">
+        <div class="container">
+            <a class="navbar-brand custom-logo" href="/">
+                <img src="{% static 'images/logo.png' %}" width="100px">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'blog-page' %}">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'shop-home-page' %}">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'shop-item-page' %}">Shop Item</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about-page' %}">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+
+                <span class="navbar-text margin-top-sm">
+               <ul class="navbar-nav mr-auto">
+                   {% if user.is_authenticated %}
+                   <li class="nav-item dropdown">
+                      <a class="dropdown-toggle no-text-decoration" href="#" id="navbardrop" data-toggle="dropdown">
+                          {% if user.profile.image %}
+                            <img class="user-icon" src="{{user.profile.image.url}}">
+                          {% else %}
+                            <span class="user-icon-text text-dark text-uppercase">{{request.user|make_list|first}}</span>
+                          {% endif %}
+                      </a>
+                      <div class="dropdown-menu custom-dropdown-position">
+                        <a class="dropdown-item text-dark px-0" href="{% url 'profile' %}">
+                          <span class="fa fa-user px-2"></span>Profile</a>
+                        <a class="dropdown-item text-dark px-0" href="#">
+                          <span class="fa fa-bar-chart px-2"></span>My Stats</a>
+                        <a class="dropdown-item text-dark px-0" href="#">
+                          <span class="fa fa-shopping-cart  px-2"></span>My Orders</a>
+                        <a class="dropdown-item text-dark px-0" href="#">
+                          <span class="fa fa-heart px-2"></span>My Wishlist</a>
+                        <hr class="my-0">
+                        <a class="dropdown-item text-dark px-0" href="{% url 'logout-page' %}">
+                          <span class="fa fa-sign-out px-2"></span>Logout</a>
+                      </div>
+                    </li>
+                   {% else %}
+                       <li class="nav-item">
+                          <a class="nav-link" href="{% url 'login-page' %}">Login</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="{% url 'register-page' %}">Register</a>
+                      </li>
+                   {% endif %}
+               </ul>
+            </span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row mt-2">
+            <div class="col-md-12 text-center" id="message-container">
+                {% for message in messages %}
+                {% if message.tags == 'error' %}
+                <div class="text-center alert alert-danger" role="alert">
+                    <i class="fa fa-close"></i>   {{ message }}
+                </div>
+                {% else %}
+                <div class="text-center alert alert-{{ message.tags }}" role="alert">
+                    <i class="fa fa-check"></i>   {{ message }}
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        {% block content %} {% endblock %}
+    </div>
+
+    <footer class="page-footer font-small bg-athletix-blue text-muted">
+        <div class="container text-center text-md-left mt-5">
+            <div class="row pt-5">
+                <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                    <img src="{% static 'images/logo.png' %}" width="150px" class="mb-1"></br>
+                    <small>AthletiX Sports and Fitness Academy is a sports academy which aims to cater all your sports training needs at one place.
+                    We provide sports training in various outdoor sports such as Cricket, Football, Athletics.</small>
+                </div>
+
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                    <h6 class="text-uppercase font-weight-bold">Quick Links</h6>
+                    <hr class="border-secondary w-50per">
+                    <small>
+                        <a href="/" class="no-text-decoration text-muted">Home</a>
+                    </small></br>
+                    <small>
+                        <a href="{% url 'blog-page' %}" class="no-text-decoration text-muted">Blog</a>
+                    </small></br>
+                    <small>
+                        <a href="#" class="no-text-decoration text-muted">Cricket</a>
+                    </small></br>
+                    <small>
+                        <a href="{% url 'about-page' %}" class="no-text-decoration text-muted">About</a>
+                    </small>
+                </div>
+
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                    <h6 class="text-uppercase font-weight-bold">Social Media</h6>
+                    <hr class="border-secondary w-50per">
+                    <small>
+                        <a href="https://www.facebook.com/athletixsportsandfitnessofficialpage" target="_blank" class="no-text-decoration text-muted">
+                            <i class="fa fa-facebook-square"></i>
+                            <span class="ml-2">Facebook</span>
+                        </a>
+                    </small></br>
+                    <small>
+                        <a href="https://www.instagram.com/athletix_sports_and_fitness/" target="_blank" class="no-text-decoration text-muted">
+                            <i class="fa fa-instagram"></i>
+                            <span class="ml-2">Instagram</span>
+                        </a>
+                    </small></br>
+                    <small>
+                        <a href="https://www.youtube.com/channel/UCGoIEdgFxbsW-2Ru4uwbQrQ" target="_blank" class="no-text-decoration text-muted">
+                            <i class="fa fa-youtube"></i>
+                            <span class="ml-2">YouTube</span>
+                        </a>
+                    </small>
+                </div>
+
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 pr-0">
+                    <h6 class="text-uppercase font-weight-bold">Contact</h6>
+                    <hr class="border-secondary w-50per">
+                    <small><i class="fa fa-home mr-1"></i> 5th Floor, Nirmal Lifestyle Mall,</small><br>
+                    <small><i class="mr-3"></i> Mulund, Mumbai 400080, IN</small><br>
+                    <small><i class="fa fa-envelope mr-1"></i> athletixsportsacademy@gmail.com</small><br>
+                    <small><i class="fa fa-phone mr-1"></i> + 91 9167417231</small></br>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-copyright text-center py-3 text-white">© 2020-21:
+            <b> AthletiX Sports and Fitness Academy Pvt. Ltd.</b>
+        </div>
+
+    </footer>
+
+
+    <!---------- Script files ----------------->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+</body>
+</html>
