@@ -1,7 +1,7 @@
 """athletix URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/2.2/topics/http/urls/
+    https://docs.djangoproject.com/en/3.0/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -22,12 +22,12 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',  views.homePage, name='home-page'),
+    path('about/', views.aboutPage, name='about-page'),
+    path('contact/', views.contactPage, name='contact-page'),
     path('account/', include('account.urls')),
     path('blog/', include('blog.urls')),
-    path('about/', include('about.urls')),
     path('shop/', include('shop.urls'))
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-

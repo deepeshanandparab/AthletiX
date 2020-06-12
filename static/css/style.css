@@ -51,6 +51,24 @@ body{
     cursor:pointer!important;
 }
 
+.hide{
+    display: none!important;
+}
+
+.comment-utilities{
+    font-size:12px!important!important;
+    cursor:pointer!important;
+}
+
+.athletix-quote{
+    background: #CD393D!important;
+    color: white!important;
+    text-align: center;
+    padding: 10px 10px;
+    font-family: Lemon Milk;
+    font-size: 20px;
+}
+
 .user-icon-text{
     height: 40px;
     padding: 5px 12px;
@@ -75,6 +93,24 @@ body{
 
 .stats-icon-text{
     padding: 20px 20px;
+    border: 2px solid #fff;
+    background: #cfcfcf;
+    border-radius: 100%;
+    text-align: center;
+    font-weight: bold;
+    font-size:20px;
+}
+
+.font-white{
+    color: white!important;
+}
+
+.title-font{
+    font-family: Lemon Milk!important;
+}
+
+.services-icon-text{
+    padding: 15px 24px;
     border: 2px solid #fff;
     background: #cfcfcf;
     border-radius: 100%;

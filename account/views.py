@@ -1,5 +1,4 @@
 from datetime import date
-
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -23,11 +22,16 @@ def register(request):
 
 @login_required
 def profile(request):
-    def age():
-        today = date.today()
-        birth_date = request.user.profile.birth_date
-        return today.year - birth_date.year - ((today.month, today.day) < (birth_date.month, birth_date.day))
-    context = {'title': 'Profile', 'age': age()}
+    if request.user.profile.birth_date:
+        def age():
+            today = date.today()
+            birth_date = request.user.profile.birth_date
+            return today.year - birth_date.year - ((today.month, today.day) < (birth_date.month, birth_date.day))
+        context = {'title': 'Profile', 'age': age()}
+    else:
+        def age():
+            return None
+        context = {'title': 'Profile', 'age': age()}
     return render(request, 'account/profile.html', context)
 
 
