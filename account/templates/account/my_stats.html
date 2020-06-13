@@ -1,0 +1,166 @@
+{% extends 'athletix/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="row mt-2">
+        <div class="col-md-12 mb-2">
+            <div class="bg-white border border-mute p-2">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-9">
+                                <h2 class="athletix-official-font">{{ request.user.first_name }} {{ request.user.last_name }} Statistics</h2>
+                            </div>
+                            <div class="col-3">
+                                <button class="btn btn-success float-right">Export</button>
+                            </div>
+                        </div>
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                                   aria-controls="home" aria-selected="true">Matches</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                                   aria-controls="profile" aria-selected="false">Tournament</a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col">Sr</th>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Venue</th>
+                                            <th scope="col">Runs</th>
+                                            <th scope="col">Balls</th>
+                                            <th scope="col">4/6</th>
+                                            <th scope="col">Strike Rate</th>
+                                            <th scope="col">Overs</th>
+                                            <th scope="col">Runs</th>
+                                            <th scope="col">Wickets</th>
+                                            <th scope="col">Economy Rate</th>
+                                            <th scope="col">Match Type</th>
+                                            <th scope="col">Tournament</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>12/8/2020</td>
+                                            <td>Shivaji Park</td>
+                                            <td>34</td>
+                                            <td>30</td>
+                                            <td>5/0</td>
+                                            <td>113.33</td>
+                                            <td>2</td>
+                                            <td>13</td>
+                                            <td>1</td>
+                                            <td>6.5</td>
+                                            <td>20 Overs</td>
+                                            <td>None</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>12/8/2020</td>
+                                            <td>Shivaji Park</td>
+                                            <td>34</td>
+                                            <td>30</td>
+                                            <td>5/0</td>
+                                            <td>113.33</td>
+                                            <td>2</td>
+                                            <td>13</td>
+                                            <td>1</td>
+                                            <td>6.5</td>
+                                            <td>20 Overs</td>
+                                            <td>None</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>12/8/2020</td>
+                                            <td>Shivaji Park</td>
+                                            <td>34</td>
+                                            <td>30</td>
+                                            <td>5/0</td>
+                                            <td>113.33</td>
+                                            <td>2</td>
+                                            <td>13</td>
+                                            <td>1</td>
+                                            <td>6.5</td>
+                                            <td>20 Overs</td>
+                                            <td>None</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!--------------------------------------------------------------------------------------------->
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col">Sr</th>
+                                            <th scope="col">Tournament</th>
+                                            <th scope="col">Venue</th>
+                                            <th scope="col">Date From</th>
+                                            <th scope="col">Date To</th>
+                                            <th scope="col">Match Type</th>
+                                            <th scope="col">Total Teams</th>
+                                            <th scope="col">Winner</th>
+                                            <th scope="col">Runner Up</th>
+                                            <th scope="col">Best Batsman</th>
+                                            <th scope="col">Best Bowler</th>
+                                            <th scope="col">Best Player</th>
+                                            <th scope="col">M.O.T.T.</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>SPCL</td>
+                                            <td>Shivaji Park</td>
+                                            <td>6/8/2020</td>
+                                            <td>14/8/2020</td>
+                                            <td>20 Overs</td>
+                                            <td>8</td>
+                                            <td>AthletiX C. A.</td>
+                                            <td>Titans C. A.</td>
+                                            <td>ABC DEF</td>
+                                            <td>PQR STU</td>
+                                            <td>LMN OPQ</td>
+                                            <td>John Doe</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>SPCL</td>
+                                            <td>Shivaji Park</td>
+                                            <td>6/8/2020</td>
+                                            <td>14/8/2020</td>
+                                            <td>20 Overs</td>
+                                            <td>8</td>
+                                            <td>AthletiX C. A.</td>
+                                            <td>Titans C. A.</td>
+                                            <td>ABC DEF</td>
+                                            <td>PQR STU</td>
+                                            <td>LMN OPQ</td>
+                                            <td>John Doe</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

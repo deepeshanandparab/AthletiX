@@ -2,15 +2,14 @@ from datetime import date
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Profile
 from .forms import RegistrationFrom, UserUpdateForm, ProfileUpdateForm
 
 def register(request):
     if request.method == 'POST':
         form = RegistrationFrom(request.POST)
         if form.is_valid():
-            form.save()
             username = form.cleaned_data.get('username')
+            form.save()
             messages.success(request, f'Account created for {username} successfully !')
             return redirect('login-page')
         else:
@@ -55,3 +54,13 @@ def profile_update(request, id):
     }
 
     return render(request, 'account/update_profile.html', context)
+
+@login_required
+def my_stats(request):
+    context = {"title":"My Statistics"}
+    return render(request, 'account/my_stats.html', context)
+
+@login_required
+def teams(request):
+    context = {"title":"Teams"}
+    return render(request, 'account/teams.html', context)

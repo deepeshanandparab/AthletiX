@@ -7,6 +7,8 @@ verify_ssl = true
 
 [packages]
 django-mathfilters = "*"
+django-simple-email-confirmation = "*"
+django-filter = "*"
 
 [requires]
 python_version = "3.7"

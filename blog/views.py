@@ -3,13 +3,17 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
+from blog.filters import PostFilter
 from blog.forms import CommentForm, CommentUpdateForm
 from .models import Post, PostLikes, PostDislikes, PostComment
 
 
 def blogHome(request):
     blog_posts = Post.objects.all().order_by('-posted_on')
-    paginator = Paginator(blog_posts, 3)
+    filter = PostFilter(request.GET, queryset=blog_posts)
+    product_filter = PostFilter(request.GET, queryset=blog_posts).qs
+
+    paginator = Paginator(product_filter, 3)
     page = request.GET.get('page')
     try:
         response = paginator.page(page)
@@ -22,6 +26,7 @@ def blogHome(request):
 
     context = {
         'title': 'Blog',
+        'search_filter': filter,
         'posts': response,
         'page_size': 3,
         'first_item_number': first_item_number

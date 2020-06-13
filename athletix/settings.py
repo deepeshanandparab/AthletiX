@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'shop',
     'crispy_forms',
     'mathfilters',
+    'django_filters',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

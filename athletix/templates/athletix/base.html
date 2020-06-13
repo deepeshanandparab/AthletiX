@@ -65,8 +65,10 @@
                       <div class="dropdown-menu custom-dropdown-position">
                         <a class="dropdown-item text-dark px-0" href="{% url 'profile' %}">
                           <span class="fa fa-user px-2"></span>Profile</a>
-                        <a class="dropdown-item text-dark px-0" href="#">
+                        <a class="dropdown-item text-dark px-0" href="{% url 'my-stats' %}">
                           <span class="fa fa-bar-chart px-2"></span>My Stats</a>
+                        <a class="dropdown-item text-dark px-0" href="{% url 'teams' %}">
+                          <span class="fa fa-group px-2"></span>Teams</a>
                         <a class="dropdown-item text-dark px-0" href="#">
                           <span class="fa fa-shopping-cart  px-2"></span>My Orders</a>
                         <a class="dropdown-item text-dark px-0" href="#">
@@ -91,7 +93,7 @@
     </nav>
 
     <div class="container">
-        <div class="row mt-2">
+        <div class="row">
             <div class="col-md-12 text-center" id="message-container">
                 {% for message in messages %}
                 {% if message.tags == 'error' %}
@@ -108,17 +110,15 @@
         </div>
     </div>
 
-    <div class="container">
-        {% block content %} {% endblock %}
-    </div>
+    {% block content %} {% endblock %}
 
     <footer class="page-footer font-small bg-athletix-blue text-muted">
-        <div class="container text-center text-md-left mt-5">
+        <div class="container text-center text-md-left">
             <div class="row pt-5">
                 <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                     <img src="{% static 'images/logo.png' %}" width="150px" class="mb-1"></br>
-                    <small>AthletiX Sports and Fitness Academy is a sports academy which aims to cater all your sports training needs at one place.
-                    We provide sports training in various outdoor sports such as Cricket, Football, Athletics.</small>
+                    <small>Athletix Sports and Fitness Academy aims to cater the sports enthusiast within you. So don't stay behind.
+                        Tie your shoes laces, prepare to loose some sweat and get your goals with AthletiX.</small>
                 </div>
 
                 <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
@@ -131,7 +131,7 @@
                         <a href="{% url 'blog-page' %}" class="no-text-decoration text-muted">Blog</a>
                     </small></br>
                     <small>
-                        <a href="#" class="no-text-decoration text-muted">Cricket</a>
+                        <a href="{% url 'shop-home-page' %}" class="no-text-decoration text-muted">Shop</a>
                     </small></br>
                     <small>
                         <a href="{% url 'about-page' %}" class="no-text-decoration text-muted">About</a>
