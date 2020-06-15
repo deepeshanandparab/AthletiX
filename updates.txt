@@ -1,0 +1,14 @@
+v1
+
+
+v2
+
+
+v3
+--------------------------------------------------------
+1. Stats Page and Team Sheet Page UI Added
+2. Account activate and deactivate UI Added
+3. Home Page Slider Animation Changed
+
+
+UI Added -Stats,Team Sheet Page, Account activate,deactivate and Home Page Slider photos, Animation Changed

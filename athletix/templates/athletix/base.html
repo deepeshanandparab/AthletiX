@@ -63,9 +63,9 @@
                           {% endif %}
                       </a>
                       <div class="dropdown-menu custom-dropdown-position">
-                        <a class="dropdown-item text-dark px-0" href="{% url 'profile' %}">
+                        <a class="dropdown-item text-dark px-0" href="{% url 'profile' user.id %}">
                           <span class="fa fa-user px-2"></span>Profile</a>
-                        <a class="dropdown-item text-dark px-0" href="{% url 'my-stats' %}">
+                        <a class="dropdown-item text-dark px-0" href="{% url 'my-stats' user.id %}">
                           <span class="fa fa-bar-chart px-2"></span>My Stats</a>
                         <a class="dropdown-item text-dark px-0" href="{% url 'teams' %}">
                           <span class="fa fa-group px-2"></span>Teams</a>

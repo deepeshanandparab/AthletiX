@@ -23,6 +23,18 @@ body{
     color: #CD393D!important;
 }
 
+.font-bold{
+    font-weight: bold!important;
+}
+
+#myStatsTab .active{
+    font-weight: bold;
+}
+
+#teamsTab .active{
+    font-weight: bold;
+}
+
 .banner-background{
     background: url('/static/images/form_banner_background.png');
     background-size: cover;

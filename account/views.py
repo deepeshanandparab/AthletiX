@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import RegistrationFrom, UserUpdateForm, ProfileUpdateForm
+from .models import Tournament, Match, Scorecard
+
 
 def register(request):
     if request.method == 'POST':
@@ -20,7 +22,10 @@ def register(request):
 
 
 @login_required
-def profile(request):
+def profile(request, player):
+    score_list = Scorecard.objects.filter(player=player).order_by('-match')
+    print(f"score_list : {len(score_list)}")
+
     if request.user.profile.birth_date:
         def age():
             today = date.today()
@@ -30,9 +35,18 @@ def profile(request):
     else:
         def age():
             return None
-        context = {'title': 'Profile', 'age': age()}
+        context = {'score_list': score_list, 'get_total_runs': get_total_runs(request.user), 'title': 'Profile', 'age': age()}
     return render(request, 'account/profile.html', context)
 
+def get_total_runs(user):
+    score_list = Scorecard.objects.filter(player=user).order_by('-match')
+    total_runs = 0
+    index = 0
+    while index < len(score_list):
+        total_runs += score_list[index].runs_scored
+        print(f"total_runs : {total_runs}")
+        index += 1
+    return total_runs
 
 @login_required
 def profile_update(request, id):
@@ -56,8 +70,10 @@ def profile_update(request, id):
     return render(request, 'account/update_profile.html', context)
 
 @login_required
-def my_stats(request):
-    context = {"title":"My Statistics"}
+def my_stats(request, player):
+    score_list = Scorecard.objects.filter(player=player).order_by('-match')
+    tournament_list = Tournament.objects.all()
+    context = { "score_list": score_list, "tournament_list": tournament_list, "title": "My Statistics"}
     return render(request, 'account/my_stats.html', context)
 
 @login_required

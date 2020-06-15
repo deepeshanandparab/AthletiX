@@ -14,8 +14,14 @@
                 <h3 class="font-bold text-center mt-2">{{user.first_name}} {{user.last_name}}</h3>
                 <hr>
                 <p class="mb-1">Username : <small class="font-bold">{{user.username}}</small></p>
-                <p class="mb-1">Email : <small class="font-bold">{{user.email}}</small></p>
-                <p class="mb-1">Contact : <small class="font-bold">+91 9800000000</small></p>
+                <p class="mb-1">Email :
+                    <small class="font-bold">{{user.email}}</small>
+                    <small><a href="#" class="text-warning no-text-decoration">Verify</a></small>
+                </p>
+                <p class="mb-1">Contact :
+                    <small class="font-bold">+91 9800000000</small>
+                    <small><i class="fa fa-check text-success"></i></small>
+                </p>
 
                 User Bio :
                 <p class="mb-1 text-justify">
@@ -27,8 +33,12 @@
                 </p>
                 <hr>
 
-                <button class="btn btn-warning px-1 py-1 text-white"><small><b>Deactivate</b></small></button>
-                <button class="btn btn-danger px-3 py-1"><small><b>Delete</b></small></button>
+                <a class="btn btn-warning px-1 py-1 cursor-pointer font-white" data-toggle="modal" data-target="#deactivateAccount">
+                    <small><b>Deactivate</b></small>
+                </a>
+                <a class="btn btn-danger px-3 py-1 cursor-pointer font-white" data-toggle="modal" data-target="#deleteAccount">
+                    <small><b>Delete</b></small>
+                </a>
             </div>
         </div>
 
@@ -103,7 +113,7 @@
                             </div>
                             <div class="col-6 col-md-3">
                                 <small><b>Matches Played</b></small>
-                                <p><small>21</small></p>
+                                <p><small>{{ score_list.count }}</small></p>
                             </div>
                             <div class="col-6 col-md-3">
                                 <small><b>Tournaments Played</b></small>
@@ -122,7 +132,7 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col">
                                         <div class="font-weight-bold athletix-red-text text-uppercase mb-1">Runs</div>
-                                        <div class="h5 mb-0 text-gray-800">789</div>
+                                        <div class="h5 mb-0 text-gray-800">{{ get_total_runs }}</div>
                                     </div>
                                     <div class="col-auto">
                                         <img src="{% static 'images/icons/bat.png' %}" class="icon">
@@ -247,5 +257,65 @@
             </div>
         </div>
     </div>
+
+    <!------------------------------------ Deactivate Account Modal ------------------------------->
+    <div class="modal fade" id="deactivateAccount" tabindex="-1" role="dialog"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <i class="fa fa-times-circle justify-content-center text-warning fa-5x"></i>
+                    <h4 class="text-warning">Are you sure?</h4>
+                    <p>Do you really want to deactivate your account?</p>
+                </div>
+                <form class="form form-group text-center">
+                    <label for="deactivate_reason">Reason: </label>
+                    <select id="deactivate_reason" class="form-control-sm">
+                        <option value="temporary">This is temporary, I will be back</option>
+                        <option value="new_account">I have another account</option>
+                        <option value="no_athletix_user">No longer a part of AthletiX</option>
+                    </select>
+                </form>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel
+                    </button>
+                    <a href="#" class="btn btn-warning">Deactivate</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!---------------------------------- End Modal -------------------------------->
+
+
+    <!------------------------------------ Deactivate Account Modal ------------------------------->
+    <div class="modal fade" id="deleteAccount" tabindex="-1" role="dialog"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <i class="fa fa-times-circle justify-content-center text-danger fa-5x"></i>
+                    <h4 class="text-danger">Are you sure?</h4>
+                    <p>Do you really want to delete your account? This can not be undone.</p>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel
+                    </button>
+                    <a href="#" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!---------------------------------- End Modal -------------------------------->
+
 </div>
 {% endblock %}
