@@ -1,0 +1,200 @@
+body{
+    background: #f5f0ec;
+    overflow-x: hidden!important;
+}
+
+.bg-custom{
+    background: #f5f0ec!important;
+}
+
+.bg-athletix-blue{
+    background: #3E3C54!important;
+}
+
+.bg-athletix-red{
+    background: #CD393D!important;
+}
+
+.athletix-red-text{
+    color: #CD393D!important;
+}
+
+.athletix-red{
+    color: #CD393D!important;
+}
+
+.font-bold{
+    font-weight: bold!important;
+}
+
+#myStatsTab .active{
+    font-weight: bold;
+}
+
+#teamsTab .active{
+    font-weight: bold;
+}
+
+.banner-background{
+    background: url('/static/images/form_banner_background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.border-radius-bottom{
+    border-radius: 0px 0px 10px 10px!important;
+}
+
+.athletix-heading-font{
+    font-family: evogria!important;
+    color: #CD393D!important;
+}
+
+.athletix-official-font{
+    font-family: evogria!important;
+}
+
+.bg-white{
+	background: #FFFFFF!important;
+}
+
+.cursor-pointer{
+    cursor:pointer!important;
+}
+
+.hide{
+    display: none!important;
+}
+
+.comment-utilities{
+    font-size:12px!important!important;
+    cursor:pointer!important;
+}
+
+.athletix-quote{
+    background: #CD393D!important;
+    color: white!important;
+    text-align: center;
+    padding: 10px 10px;
+    font-family: Lemon Milk;
+    font-size: 20px;
+}
+
+.user-icon-text{
+    height: 40px;
+    padding: 5px 12px;
+    border: 2px solid #fff;
+    background: #cfcfcf;
+    border-radius: 100%;
+    text-align: center;
+    font-weight: bold;
+    font-size:20px;
+}
+
+.user-icon{
+    height: 40px;
+    width: 40px;
+    border: 2px solid #fff;
+    background: #cfcfcf;
+    border-radius: 100%;
+    text-align: center;
+    font-weight: bold;
+    font-size:20px;
+}
+
+.stats-icon-text{
+    padding: 20px 20px;
+    border: 2px solid #fff;
+    background: #cfcfcf;
+    border-radius: 100%;
+    text-align: center;
+    font-weight: bold;
+    font-size:20px;
+}
+
+.font-white{
+    color: white!important;
+}
+
+.title-font{
+    font-family: Lemon Milk!important;
+}
+
+.services-icon-text{
+    padding: 15px 24px;
+    border: 2px solid #fff;
+    background: #cfcfcf;
+    border-radius: 100%;
+    text-align: center;
+    font-weight: bold;
+    font-size:20px;
+}
+
+.social-icon{
+    padding: 20px 15px 10px 15px;
+    border: 2px solid #fff;
+    background: #cfcfcf;
+    border-radius: 100%;
+    text-align: center;
+    font-weight: bold;
+}
+
+.comment-section-user-icon{
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+    border: 1px solid #cfcfcf;
+}
+
+.comment-section-text-icon{
+    height: 60px;
+    width: 60px;
+    padding: 10px 20px;
+    border-radius: 100%;
+    border: 1px solid #cfcfcf;
+    background: #f5f0ec;
+    text-align: center;
+    font-weight: bold;
+    font-size:22px;
+}
+
+.icon{
+    height: 30px!important;
+    width: 30px!important;
+}
+
+.no-text-decoration{
+    text-decoration:none!important;
+}
+
+.card-body{
+    padding: 0em 0.5em!important;
+}
+
+.no-products{
+     height:200px!important;
+     padding-top:50px!important;
+}
+
+@media only screen and (min-width: 786px) {
+  .no-padding-top-lg{
+    padding-top:0px!important;
+  }
+
+  .no-padding-bottom-lg{
+    padding-bottom:0px!important;
+  }
+}
+
+@media only screen and (max-width: 786px) {
+  body{
+    background: #f5f0ec;
+    overflow-x: hidden!important;
+    }
+
+  .w-50per{
+    width: 50%!important;
+    }
+}

@@ -1,6 +1,8 @@
 {% extends 'athletix/base.html' %}
 {% load crispy_forms_tags %}
 {% load static %}
+{% load humanize %}
+
 {% block content %}
 <div class="container">
     <div class="row mt-2">
@@ -102,36 +104,36 @@
                                         {% elif age < 16 %} Under 16
                                         {% elif age < 19 %} Under 19
                                         {% elif age < 23 %} Under 23
-                                        {% else %} Open Age
+                                        {% else %} Seniors
                                         {% endif %}
                                     </small>
                                 </p>
                             </div>
                             <div class="col-6 col-md-3">
                                 <small><b>Team Position</b></small>
-                                <p><small>Playing eleven</small></p>
+                                <p><small>{{ team_player.0.get_position_display }}</small></p>
                             </div>
                             <div class="col-6 col-md-3">
                                 <small><b>Matches Played</b></small>
-                                <p><small>{{ score_list.count }}</small></p>
+                                <h4>{{ score_list.count }}</h4>
                             </div>
                             <div class="col-6 col-md-3">
                                 <small><b>Tournaments Played</b></small>
-                                <p><small>4</small></p>
+                                <h4>{{ tournaments_played }}</h4>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-12 mt-4">
+            <div class="col-md-12 mt-4 px-0">
                 <div class="row">
                     <div class="col-6 col-md-3 mb-4">
                         <div class="card border-left-primary shadow h-100 py-2">
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col">
-                                        <div class="font-weight-bold athletix-red-text text-uppercase mb-1">Runs</div>
+                                        <div class="font-weight-bold athletix-red-text text-uppercase mb-1 small">Runs</div>
                                         <div class="h5 mb-0 text-gray-800">{{ get_total_runs }}</div>
                                     </div>
                                     <div class="col-auto">
@@ -147,8 +149,10 @@
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
-                                        <div class="font-weight-bold athletix-red-text text-uppercase mb-1">100/50</div>
-                                        <div class="h5 mb-0 text-gray-800">1/4</div>
+                                        <div class="font-weight-bold athletix-red-text text-uppercase mb-1 small">100/50/30</div>
+                                        <div class="h5 mb-0 text-gray-800">
+                                            {{get_hundreds_count}}/{{get_fifties_count}}/{{get_thirties_count}}
+                                        </div>
                                     </div>
                                     <div class="col-auto">
                                         <img src="{% static 'images/icons/tons.png' %}" class="icon">
@@ -163,8 +167,8 @@
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col">
-                                        <div class="font-weight-bold athletix-red-text text-uppercase mb-1">Avg</div>
-                                        <div class="h5 mb-0 text-gray-800">36.4</div>
+                                        <div class="font-weight-bold athletix-red-text text-uppercase mb-1 small">Average</div>
+                                        <div class="h5 mb-0 text-gray-800">{{batting_avg|floatformat:2}}</div>
                                     </div>
                                     <div class="col-auto">
                                         <img src="{% static 'images/icons/average.png' %}" class="icon">
@@ -179,8 +183,8 @@
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
-                                        <div class="font-weight-bold athletix-red-text text-uppercase mb-1">S.R.</div>
-                                        <div class="h5 mb-0 text-gray-800">80.4</div>
+                                        <div class="font-weight-bold athletix-red-text text-uppercase mb-1 small">Strike Rate</div>
+                                        <div class="h5 mb-0 text-gray-800">{{get_overall_strike_rate|floatformat:2}}</div>
                                     </div>
                                     <div class="col-auto">
                                         <img src="{% static 'images/icons/bat.png' %}" class="icon">
@@ -195,8 +199,8 @@
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
-                                        <div class="font-weight-bold athletix-red-text text-uppercase mb-1">Wk</div>
-                                        <div class="h5 mb-0 text-gray-800">22</div>
+                                        <div class="font-weight-bold athletix-red-text text-uppercase mb-1 small">Wickets</div>
+                                        <div class="h5 mb-0 text-gray-800">{{get_total_wickets}}</div>
                                     </div>
                                     <div class="col-auto">
                                         <img src="{% static 'images/icons/stumps.png' %}" class="icon">
@@ -211,8 +215,8 @@
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
-                                        <div class="font-weight-bold athletix-red-text text-uppercase mb-1">5 fer</div>
-                                        <div class="h5 mb-0 text-gray-800">1</div>
+                                        <div class="font-weight-bold athletix-red-text text-uppercase mb-1 small">5 fer</div>
+                                        <div class="h5 mb-0 text-gray-800">{{get_fifer_count}}</div>
                                     </div>
                                     <div class="col-auto">
                                         <img src="{% static 'images/icons/5fers.png' %}" class="icon">
@@ -227,8 +231,8 @@
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
-                                        <div class="font-weight-bold athletix-red-text text-uppercase mb-1">Eco</div>
-                                        <div class="h5 mb-0 text-gray-800">6.2</div>
+                                        <div class="font-weight-bold athletix-red-text text-uppercase mb-1 small">Economy Rate</div>
+                                        <div class="h5 mb-0 text-gray-800">{{get_economy_rate|floatformat:2}}</div>
                                     </div>
                                     <div class="col-auto">
                                         <img src="{% static 'images/icons/economy.png' %}" class="icon">
@@ -243,8 +247,8 @@
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
-                                        <div class="font-weight-bold athletix-red-text text-uppercase mb-1">MOTM</div>
-                                        <div class="h5 mb-0 text-gray-800">6</div>
+                                        <div class="font-weight-bold athletix-red-text text-uppercase mb-1 small">Man of the match</div>
+                                        <div class="h5 mb-0 text-gray-800">{{get_man_of_the_match}}</div>
                                     </div>
                                     <div class="col-auto">
                                         <img src="{% static 'images/icons/motm.png' %}" class="icon">

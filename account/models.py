@@ -1,3 +1,5 @@
+from datetime import date
+
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -42,6 +44,11 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'{self.user.username} Profile'
+
+    def getAge(self):
+        today = date.today()
+        birth_date = self.user.profile.birth_date
+        return today.year - birth_date.year - ((today.month, today.day) < (birth_date.month, birth_date.day))
 
 
 class Tournament(models.Model):
@@ -111,6 +118,7 @@ class Scorecard(models.Model):
     balls = models.IntegerField(default=0)
     fours = models.IntegerField(default=0)
     sixes = models.IntegerField(default=0)
+    is_not_out = models.BooleanField(default=0)
     overs_bowled = models.IntegerField(default=0)
     runs_conceded = models.IntegerField(default=0)
     wickets = models.IntegerField(default=0)
@@ -132,6 +140,20 @@ class Scorecard(models.Model):
             return round(economy_rate,2)
         else:
             return 0
+
+class Team(models.Model):
+    POSITION_CHOICES = (
+        ('pl11', 'Playing 11'),
+        ('sub', 'Substitutes'),
+        ('prob', 'Probables')
+    )
+
+    player = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True, blank=True)
+    position = models.CharField(max_length=6, choices=POSITION_CHOICES, default='')
+
+    def __str__(self):
+        return f'{self.player} is in {self.position}'
+
 
 
 

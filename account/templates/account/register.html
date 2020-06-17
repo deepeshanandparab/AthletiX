@@ -3,14 +3,15 @@
 {% load static %}
 
 {% block content %}
-<div class="row justify-content-md-center">
+<div class="container">
+<div class="row justify-content-md-center mt-4">
     <form class="form col-md-8" method="post">
         {% csrf_token %}
         <fieldset class="form-group mb-0">
-            <legend class="mb-2 py-4 athletix-official-font text-white text-center banner-background">
+            <legend class="py-4 athletix-official-font text-white text-center banner-background mb-0">
                 Registration Form
             </legend>
-            <div class="row justify-content-md-center bg-white mx-1">
+            <div class="row justify-content-md-center bg-white mx-1 pt-4 pb-2">
                 <div class="col-md-8">
                     {{ form|crispy}}
                 </div>
@@ -26,12 +27,6 @@
             </div>
         </div>
     </form>
-
-<!--    <div class="col-md-4">-->
-<!--        <a href="#">-->
-<!--            <img src="{% static 'images/equipments.gif' %}" class="col-md-12 mt-2">-->
-<!--            <img src="{% static 'images/equipments.gif' %}" class="col-md-12 mt-4">-->
-<!--        </a>-->
-<!--    </div>-->
+</div>
 </div>
 {% endblock %}

@@ -42,6 +42,10 @@
                                 <a class="nav-link athletix-red-text" id="u23-tab" data-toggle="tab" href="#u23" role="tab"
                                    aria-controls="profile" aria-selected="false">Under 23</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link athletix-red-text" id="seniors-tab" data-toggle="tab" href="#seniors" role="tab"
+                                   aria-controls="profile" aria-selected="false">Seniors</a>
+                            </li>
                         </ul>
 
                         <div class="tab-content">
@@ -52,17 +56,13 @@
                                             Playing 11
                                         </h2>
                                         <div class="team-sheet pl-4 small">
-                                            <p>1.  ____________________________</p>
-                                            <p>2.  ____________________________</p>
-                                            <p>3.  ____________________________</p>
-                                            <p>4.  ____________________________</p>
-                                            <p>5.  ____________________________</p>
-                                            <p>6.  ____________________________</p>
-                                            <p>7.  ____________________________</p>
-                                            <p>8.  ____________________________</p>
-                                            <p>9.  ____________________________</p>
-                                            <p>10.  ____________________________</p>
-                                            <p>11.  ____________________________</p>
+                                            {% for team in team_list %}
+                                            {% if team.player.profile.getAge <= 10 and team.position == 'pl11' %}
+                                            <p>{{ team.player.first_name }} {{ team.player.last_name }}</p>
+                                            {% endif %}
+                                            {% empty %}
+                                            <p>No players in this team</p>
+                                            {% endfor %}
                                         </div>
                                     </div>
 
@@ -71,10 +71,13 @@
                                             Substitutes
                                         </h2>
                                         <div class="team-sheet pl-4 small">
-                                            <p>1.  ____________________________</p>
-                                            <p>2.  ____________________________</p>
-                                            <p>3.  ____________________________</p>
-                                            <p>4.  ____________________________</p>
+                                            {% for team in team_list %}
+                                            {% if team.player.profile.getAge <= 10 and team.position == 'sub' %}
+                                            <p>{{ team.player.first_name }} {{ team.player.last_name }}</p>
+                                            {% endif %}
+                                            {% empty %}
+                                            <p>No players in this team</p>
+                                            {% endfor %}
                                         </div>
                                     </div>
 
@@ -83,11 +86,13 @@
                                             Probables
                                         </h2>
                                         <div class="team-sheet pl-4 small">
-                                            <p>1.  ____________________________</p>
-                                            <p>2.  ____________________________</p>
-                                            <p>3.  ____________________________</p>
-                                            <p>4.  ____________________________</p>
-                                            <p>5.  ____________________________</p>
+                                            {% for team in team_list %}
+                                            {% if team.player.profile.getAge <= 10 and team.position == 'prob' %}
+                                            <p>{{ team.player.first_name }} {{ team.player.last_name }}</p>
+                                            {% endif %}
+                                            {% empty %}
+                                            <p>No players in this team</p>
+                                            {% endfor %}
                                         </div>
                                     </div>
                                 </div>
@@ -101,17 +106,13 @@
                                             Playing 11
                                         </h2>
                                         <div class="team-sheet pl-4 small">
-                                            <p>1.  ____________________________</p>
-                                            <p>2.  ____________________________</p>
-                                            <p>3.  ____________________________</p>
-                                            <p>4.  ____________________________</p>
-                                            <p>5.  ____________________________</p>
-                                            <p>6.  ____________________________</p>
-                                            <p>7.  ____________________________</p>
-                                            <p>8.  ____________________________</p>
-                                            <p>9.  ____________________________</p>
-                                            <p>10.  ____________________________</p>
-                                            <p>11.  ____________________________</p>
+                                            {% for team in team_list %}
+                                            {% if team.player.profile.getAge <= 12 and team.position == 'pl11' %}
+                                            <p>{{ team.player.first_name }} {{ team.player.last_name }}</p>
+                                            {% endif %}
+                                            {% empty %}
+                                            <p>No players in this team</p>
+                                            {% endfor %}
                                         </div>
                                     </div>
 
@@ -120,10 +121,13 @@
                                             Substitutes
                                         </h2>
                                         <div class="team-sheet pl-4 small">
-                                            <p>1.  ____________________________</p>
-                                            <p>2.  ____________________________</p>
-                                            <p>3.  ____________________________</p>
-                                            <p>4.  ____________________________</p>
+                                            {% for team in team_list %}
+                                            {% if team.player.profile.getAge <= 12 and team.position == 'sub' %}
+                                            <p>{{ team.player.first_name }} {{ team.player.last_name }}</p>
+                                            {% endif %}
+                                            {% empty %}
+                                            <p>No players in this team</p>
+                                            {% endfor %}
                                         </div>
                                     </div>
 
@@ -132,11 +136,13 @@
                                             Probables
                                         </h2>
                                         <div class="team-sheet pl-4 small">
-                                            <p>1.  ____________________________</p>
-                                            <p>2.  ____________________________</p>
-                                            <p>3.  ____________________________</p>
-                                            <p>4.  ____________________________</p>
-                                            <p>5.  ____________________________</p>
+                                            {% for team in team_list %}
+                                            {% if team.player.profile.getAge <= 12 and team.position == 'prob' %}
+                                            <p>{{ team.player.first_name }} {{ team.player.last_name }}</p>
+                                            {% endif %}
+                                            {% empty %}
+                                            <p>No players in this team</p>
+                                            {% endfor %}
                                         </div>
                                     </div>
                                 </div>
@@ -150,17 +156,13 @@
                                             Playing 11
                                         </h2>
                                         <div class="team-sheet pl-4 small">
-                                            <p>1.  ____________________________</p>
-                                            <p>2.  ____________________________</p>
-                                            <p>3.  ____________________________</p>
-                                            <p>4.  ____________________________</p>
-                                            <p>5.  ____________________________</p>
-                                            <p>6.  ____________________________</p>
-                                            <p>7.  ____________________________</p>
-                                            <p>8.  ____________________________</p>
-                                            <p>9.  ____________________________</p>
-                                            <p>10.  ____________________________</p>
-                                            <p>11.  ____________________________</p>
+                                            {% for team in team_list %}
+                                            {% if team.player.profile.getAge <= 14 and team.position == 'pl11' %}
+                                            <p>{{ team.player.first_name }} {{ team.player.last_name }}</p>
+                                            {% endif %}
+                                            {% empty %}
+                                            <p>No players in this team</p>
+                                            {% endfor %}
                                         </div>
                                     </div>
 
@@ -169,10 +171,13 @@
                                             Substitutes
                                         </h2>
                                         <div class="team-sheet pl-4 small">
-                                            <p>1.  ____________________________</p>
-                                            <p>2.  ____________________________</p>
-                                            <p>3.  ____________________________</p>
-                                            <p>4.  ____________________________</p>
+                                            {% for team in team_list %}
+                                            {% if team.player.profile.getAge <= 14 and team.position == 'sub' %}
+                                            <p>{{ team.player.first_name }} {{ team.player.last_name }}</p>
+                                            {% endif %}
+                                            {% empty %}
+                                            <p>No players in this team</p>
+                                            {% endfor %}
                                         </div>
                                     </div>
 
@@ -181,11 +186,13 @@
                                             Probables
                                         </h2>
                                         <div class="team-sheet pl-4 small">
-                                            <p>1.  ____________________________</p>
-                                            <p>2.  ____________________________</p>
-                                            <p>3.  ____________________________</p>
-                                            <p>4.  ____________________________</p>
-                                            <p>5.  ____________________________</p>
+                                            {% for team in team_list %}
+                                            {% if team.player.profile.getAge <= 14 and team.position == 'prob' %}
+                                            <p>{{ team.player.first_name }} {{ team.player.last_name }}</p>
+                                            {% endif %}
+                                            {% empty %}
+                                            <p>No players in this team</p>
+                                            {% endfor %}
                                         </div>
                                     </div>
                                 </div>
@@ -199,17 +206,13 @@
                                             Playing 11
                                         </h2>
                                         <div class="team-sheet pl-4 small">
-                                            <p>1.  ____________________________</p>
-                                            <p>2.  ____________________________</p>
-                                            <p>3.  ____________________________</p>
-                                            <p>4.  ____________________________</p>
-                                            <p>5.  ____________________________</p>
-                                            <p>6.  ____________________________</p>
-                                            <p>7.  ____________________________</p>
-                                            <p>8.  ____________________________</p>
-                                            <p>9.  ____________________________</p>
-                                            <p>10.  ____________________________</p>
-                                            <p>11.  ____________________________</p>
+                                            {% for team in team_list %}
+                                            {% if team.player.profile.getAge <= 16 and team.position == 'pl11' %}
+                                            <p>{{ team.player.first_name }} {{ team.player.last_name }}</p>
+                                            {% endif %}
+                                            {% empty %}
+                                            <p>No players in this team</p>
+                                            {% endfor %}
                                         </div>
                                     </div>
 
@@ -218,10 +221,13 @@
                                             Substitutes
                                         </h2>
                                         <div class="team-sheet pl-4 small">
-                                            <p>1.  ____________________________</p>
-                                            <p>2.  ____________________________</p>
-                                            <p>3.  ____________________________</p>
-                                            <p>4.  ____________________________</p>
+                                            {% for team in team_list %}
+                                            {% if team.player.profile.getAge <= 16 and team.position == 'sub' %}
+                                            <p>{{ team.player.first_name }} {{ team.player.last_name }}</p>
+                                            {% endif %}
+                                            {% empty %}
+                                            <p>No players in this team</p>
+                                            {% endfor %}
                                         </div>
                                     </div>
 
@@ -230,11 +236,13 @@
                                             Probables
                                         </h2>
                                         <div class="team-sheet pl-4 small">
-                                            <p>1.  ____________________________</p>
-                                            <p>2.  ____________________________</p>
-                                            <p>3.  ____________________________</p>
-                                            <p>4.  ____________________________</p>
-                                            <p>5.  ____________________________</p>
+                                            {% for team in team_list %}
+                                            {% if team.player.profile.getAge <= 16 and team.position == 'prob' %}
+                                            <p>{{ team.player.first_name }} {{ team.player.last_name }}</p>
+                                            {% endif %}
+                                            {% empty %}
+                                            <p>No players in this team</p>
+                                            {% endfor %}
                                         </div>
                                     </div>
                                 </div>
@@ -248,17 +256,13 @@
                                             Playing 11
                                         </h2>
                                         <div class="team-sheet pl-4 small">
-                                            <p>1.  ____________________________</p>
-                                            <p>2.  ____________________________</p>
-                                            <p>3.  ____________________________</p>
-                                            <p>4.  ____________________________</p>
-                                            <p>5.  ____________________________</p>
-                                            <p>6.  ____________________________</p>
-                                            <p>7.  ____________________________</p>
-                                            <p>8.  ____________________________</p>
-                                            <p>9.  ____________________________</p>
-                                            <p>10.  ____________________________</p>
-                                            <p>11.  ____________________________</p>
+                                            {% for team in team_list %}
+                                            {% if team.player.profile.getAge <= 19 and team.position == 'pl11' %}
+                                            <p>{{ team.player.first_name }} {{ team.player.last_name }}</p>
+                                            {% endif %}
+                                            {% empty %}
+                                            <p>No players in this team</p>
+                                            {% endfor %}
                                         </div>
                                     </div>
 
@@ -267,10 +271,13 @@
                                             Substitutes
                                         </h2>
                                         <div class="team-sheet pl-4 small">
-                                            <p>1.  ____________________________</p>
-                                            <p>2.  ____________________________</p>
-                                            <p>3.  ____________________________</p>
-                                            <p>4.  ____________________________</p>
+                                            {% for team in team_list %}
+                                            {% if team.player.profile.getAge <= 19 and team.position == 'sub' %}
+                                            <p>{{ team.player.first_name }} {{ team.player.last_name }}</p>
+                                            {% endif %}
+                                            {% empty %}
+                                            <p>No players in this team</p>
+                                            {% endfor %}
                                         </div>
                                     </div>
 
@@ -279,11 +286,13 @@
                                             Probables
                                         </h2>
                                         <div class="team-sheet pl-4 small">
-                                            <p>1.  ____________________________</p>
-                                            <p>2.  ____________________________</p>
-                                            <p>3.  ____________________________</p>
-                                            <p>4.  ____________________________</p>
-                                            <p>5.  ____________________________</p>
+                                            {% for team in team_list %}
+                                            {% if team.player.profile.getAge <= 19 and team.position == 'prob' %}
+                                            <p>{{ team.player.first_name }} {{ team.player.last_name }}</p>
+                                            {% endif %}
+                                            {% empty %}
+                                            <p>No players in this team</p>
+                                            {% endfor %}
                                         </div>
                                     </div>
                                 </div>
@@ -297,17 +306,13 @@
                                             Playing 11
                                         </h2>
                                         <div class="team-sheet pl-4 small">
-                                            <p>1.  ____________________________</p>
-                                            <p>2.  ____________________________</p>
-                                            <p>3.  ____________________________</p>
-                                            <p>4.  ____________________________</p>
-                                            <p>5.  ____________________________</p>
-                                            <p>6.  ____________________________</p>
-                                            <p>7.  ____________________________</p>
-                                            <p>8.  ____________________________</p>
-                                            <p>9.  ____________________________</p>
-                                            <p>10.  ____________________________</p>
-                                            <p>11.  ____________________________</p>
+                                            {% for team in team_list %}
+                                            {% if team.player.profile.getAge <= 23 and team.position == 'pl11' %}
+                                            <p>{{ team.player.first_name }} {{ team.player.last_name }}</p>
+                                            {% endif %}
+                                            {% empty %}
+                                            <p>No players in this team</p>
+                                            {% endfor %}
                                         </div>
                                     </div>
 
@@ -316,10 +321,13 @@
                                             Substitutes
                                         </h2>
                                         <div class="team-sheet pl-4 small">
-                                            <p>1.  ____________________________</p>
-                                            <p>2.  ____________________________</p>
-                                            <p>3.  ____________________________</p>
-                                            <p>4.  ____________________________</p>
+                                            {% for team in team_list %}
+                                            {% if team.player.profile.getAge <= 23 and team.position == 'sub' %}
+                                            <p>{{ team.player.first_name }} {{ team.player.last_name }}</p>
+                                            {% endif %}
+                                            {% empty %}
+                                            <p>No players in this team</p>
+                                            {% endfor %}
                                         </div>
                                     </div>
 
@@ -328,11 +336,62 @@
                                             Probables
                                         </h2>
                                         <div class="team-sheet pl-4 small">
-                                            <p>1.  ____________________________</p>
-                                            <p>2.  ____________________________</p>
-                                            <p>3.  ____________________________</p>
-                                            <p>4.  ____________________________</p>
-                                            <p>5.  ____________________________</p>
+                                            {% for team in team_list %}
+                                            {% if team.player.profile.getAge <= 23 and team.position == 'prob' %}
+                                            <p>{{ team.player.first_name }} {{ team.player.last_name }}</p>
+                                            {% endif %}
+                                            {% empty %}
+                                            <p>No players in this team</p>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--------------------------------------------------------------------------------------------->
+                            <div class="tab-pane fade" id="seniors" role="tabpanel" aria-labelledby="profile-tab">
+                                <div class="row p-4">
+                                    <div class="col-12 col-md-4">
+                                        <h2 class="athletix-quote">
+                                            Playing 11
+                                        </h2>
+                                        <div class="team-sheet pl-4 small">
+                                            {% for team in team_list %}
+                                            {% if team.player.profile.getAge > 23 and team.position == 'pl11' %}
+                                            <p>{{ team.player.first_name }} {{ team.player.last_name }}</p>
+                                            {% endif %}
+                                            {% empty %}
+                                            <p>No players in this team</p>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-md-4">
+                                        <h2 class="athletix-quote">
+                                            Substitutes
+                                        </h2>
+                                        <div class="team-sheet pl-4 small">
+                                            {% for team in team_list %}
+                                            {% if team.player.profile.getAge > 23 and team.position == 'sub' %}
+                                            <p>{{ team.player.first_name }} {{ team.player.last_name }}</p>
+                                            {% endif %}
+                                            {% empty %}
+                                            <p>No players in this team</p>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-md-4">
+                                        <h2 class="athletix-quote">
+                                            Probables
+                                        </h2>
+                                        <div class="team-sheet pl-4 small">
+                                            {% for team in team_list %}
+                                            {% if team.player.profile.getAge > 23 and team.position == 'prob' %}
+                                            <p>{{ team.player.first_name }} {{ team.player.last_name }}</p>
+                                            {% endif %}
+                                            {% empty %}
+                                            <p>No players in this team</p>
+                                            {% endfor %}
                                         </div>
                                     </div>
                                 </div>
