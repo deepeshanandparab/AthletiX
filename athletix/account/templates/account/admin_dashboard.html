@@ -1,0 +1,248 @@
+{% extends 'athletix/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+<div class="row mt-2">
+    <div class="col-md-3 mb-2">
+        <div class="bg-white border border-mute p-2">
+            {% if user.profile.image %}
+            <img class="col-md-12 border border-muted px-0" src="{{user.profile.image.url}}">
+            {% else %}
+            <img class="col-md-12 border border-muted px-0" src="{% static 'images/default.jpg' %}">
+            {% endif %}
+            <h3 class="font-bold text-center mt-2">{{user.first_name}} {{user.last_name}}</h3>
+            <hr>
+            <p class="mb-1">Username : <small class="font-bold">{{user.username}}</small></p>
+            <p class="mb-1">Email : <small class="font-bold">{{user.email}}</small></p>
+            <p class="mb-1">Contact : <small class="font-bold">+91 9800000000</small></p>
+
+            User Bio :
+            <p class="mb-1 text-justify">
+                <small class="font-bold">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                    when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                </small>
+            </p>
+            <hr>
+
+            <button class="btn btn-warning px-1 py-1 text-white"><small><b>Deactivate</b></small></button>
+            <button class="btn btn-danger px-3 py-1"><small><b>Delete</b></small></button>
+        </div>
+    </div>
+
+    <div class="col-md-9">
+        <div class="bg-white border border-mute p-2">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <h3 class="border-bottom pb-2 athletix-red-text">Admin Dashboard</h3>
+                        </div>
+                        <div class="col-md-2">
+                            <a href="{% url 'profile-update' user.profile.id %}" class="btn btn-outline-info cursor-pointer float-right px-1"><small><b>Edit Profile</b></small></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-6 col-md-3">
+                            <small><b>Batting Hand</b></small>
+                            <p><small>{{ user.profile.get_batting_hand_display }}</small></p>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <small><b>Batting Position</b></small>
+                            <p><small>{{ user.profile.get_batting_order_display }}</small></p>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <small><b>Bowling Hand</b></small>
+                            <p><small>{{ user.profile.get_bowling_hand_display }}</small></p>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <small><b>Bowling Type</b></small>
+                            <p><small>{{ user.profile.get_bowling_type_display }}</small></p>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <small><b>Date of Birth</b></small>
+                            <p><small>{{ user.profile.birth_date }}</small></p>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <small><b>Age</b></small>
+                            <p><small>{{ age }}</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="border-bottom pb-2 athletix-red-text">Match Stats</h3>
+                </div>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-6 col-md-3">
+                            <small><b>Age Group</b></small>
+                            <p>
+                                <small>
+                                {% if age < 14 %} Under 14
+                                    {% elif age < 16 %} Under 16
+                                    {% elif age < 19 %} Under 19
+                                    {% elif age < 23 %} Under 23
+                                    {% else %} Open Age
+                                    {% endif %}
+                                </small>
+                            </p>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <small><b>Team Position</b></small>
+                            <p><small>Playing eleven</small></p>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <small><b>Matches Played</b></small>
+                            <p><small>21</small></p>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <small><b>Tournaments Played</b></small>
+                            <p><small>4</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 mt-4">
+          <div class="row">
+            <div class="col-6 col-md-3 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col">
+                      <div class="font-weight-bold athletix-red-text text-uppercase mb-1">Runs</div>
+                      <div class="h5 mb-0 text-gray-800">789</div>
+                    </div>
+                    <div class="col-auto">
+                      <img src="{% static 'images/icons/bat.png' %}" class="icon">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6 col-md-3 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="font-weight-bold athletix-red-text text-uppercase mb-1">100/50</div>
+                      <div class="h5 mb-0 text-gray-800">1/4</div>
+                    </div>
+                    <div class="col-auto">
+                      <img src="{% static 'images/icons/tons.png' %}" class="icon">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6 col-md-3 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col">
+                      <div class="font-weight-bold athletix-red-text text-uppercase mb-1">Avg</div>
+                      <div class="h5 mb-0 text-gray-800">36.4</div>
+                    </div>
+                    <div class="col-auto">
+                      <img src="{% static 'images/icons/average.png' %}" class="icon">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6 col-md-3 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="font-weight-bold athletix-red-text text-uppercase mb-1">S.R.</div>
+                      <div class="h5 mb-0 text-gray-800">80.4</div>
+                    </div>
+                    <div class="col-auto">
+                      <img src="{% static 'images/icons/bat.png' %}" class="icon">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6 col-md-3 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="font-weight-bold athletix-red-text text-uppercase mb-1">Wk</div>
+                      <div class="h5 mb-0 text-gray-800">22</div>
+                    </div>
+                    <div class="col-auto">
+                      <img src="{% static 'images/icons/stumps.png' %}" class="icon">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6 col-md-3 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="font-weight-bold athletix-red-text text-uppercase mb-1">5 fer</div>
+                      <div class="h5 mb-0 text-gray-800">1</div>
+                    </div>
+                    <div class="col-auto">
+                      <img src="{% static 'images/icons/5fers.png' %}" class="icon">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6 col-md-3 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="font-weight-bold athletix-red-text text-uppercase mb-1">Eco</div>
+                      <div class="h5 mb-0 text-gray-800">6.2</div>
+                    </div>
+                    <div class="col-auto">
+                      <img src="{% static 'images/icons/economy.png' %}" class="icon">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6 col-md-3 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="font-weight-bold athletix-red-text text-uppercase mb-1">MOTM</div>
+                      <div class="h5 mb-0 text-gray-800">6</div>
+                    </div>
+                    <div class="col-auto">
+                      <img src="{% static 'images/icons/motm.png' %}" class="icon">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+{% endblock %}

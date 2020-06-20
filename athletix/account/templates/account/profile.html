@@ -1,0 +1,325 @@
+{% extends 'athletix/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+<div class="container">
+    <div class="row mt-2">
+        <div class="col-md-3 mb-2">
+            <div class="bg-white border border-mute p-2">
+                {% if user.profile.image %}
+                <img class="col-md-12 border border-muted px-0" src="{{user.profile.image.url}}">
+                {% else %}
+                <img class="col-md-12 border border-muted px-0" src="{% static 'images/default.jpg' %}">
+                {% endif %}
+                <h3 class="font-bold text-center mt-2">{{user.first_name}} {{user.last_name}}</h3>
+                <hr>
+                <p class="mb-1">Username : <small class="font-bold">{{user.username}}</small></p>
+                <p class="mb-1">Email :
+                    <small class="font-bold">{{user.email}}</small>
+                    <small><a href="#" class="text-warning no-text-decoration">Verify</a></small>
+                </p>
+                <p class="mb-1">Contact :
+                    <small class="font-bold">+91 9800000000</small>
+                    <small><i class="fa fa-check text-success"></i></small>
+                </p>
+
+                User Bio :
+                <p class="mb-1 text-justify">
+                    <small class="font-bold">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                        when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    </small>
+                </p>
+                <hr>
+
+                <a class="btn btn-warning px-1 py-1 cursor-pointer font-white" data-toggle="modal" data-target="#deactivateAccount">
+                    <small><b>Deactivate</b></small>
+                </a>
+                <a class="btn btn-danger px-3 py-1 cursor-pointer font-white" data-toggle="modal" data-target="#deleteAccount">
+                    <small><b>Delete</b></small>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <div class="bg-white border border-mute p-2">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <h3 class="border-bottom pb-2 athletix-red-text">Player Information</h3>
+                            </div>
+                            <div class="col-md-2">
+                                <a href="{% url 'profile-update' user.profile.id %}"
+                                   class="btn btn-outline-info cursor-pointer float-right px-1"><small><b>Edit
+                                    Profile</b></small></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-6 col-md-3">
+                                <small><b>Batting Hand</b></small>
+                                <p><small>{{ user.profile.get_batting_hand_display }}</small></p>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <small><b>Batting Position</b></small>
+                                <p><small>{{ user.profile.get_batting_order_display }}</small></p>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <small><b>Bowling Hand</b></small>
+                                <p><small>{{ user.profile.get_bowling_hand_display }}</small></p>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <small><b>Bowling Type</b></small>
+                                <p><small>{{ user.profile.get_bowling_type_display }}</small></p>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <small><b>Date of Birth</b></small>
+                                <p><small>{{ user.profile.birth_date }}</small></p>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <small><b>Age</b></small>
+                                <p><small>{{ age }}</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="border-bottom pb-2 athletix-red-text">Match Stats</h3>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-6 col-md-3">
+                                <small><b>Age Group</b></small>
+                                <p>
+                                    <small>
+                                        {% if age < 14 %} Under 14
+                                        {% elif age < 16 %} Under 16
+                                        {% elif age < 19 %} Under 19
+                                        {% elif age < 23 %} Under 23
+                                        {% else %} Seniors
+                                        {% endif %}
+                                    </small>
+                                </p>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <small><b>Team Position</b></small>
+                                <p><small>{{ team_player.0.get_position_display }}</small></p>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <small><b>Matches Played</b></small>
+                                <h4>{{ score_list.count }}</h4>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <small><b>Tournaments Played</b></small>
+                                <h4>{{ tournaments_played }}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 mt-4 px-0">
+                <div class="row">
+                    <div class="col-6 col-md-3 mb-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col">
+                                        <div class="font-weight-bold athletix-red-text text-uppercase mb-1 small">Runs</div>
+                                        <div class="h5 mb-0 text-gray-800">{{ get_total_runs }}</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <img src="{% static 'images/icons/bat.png' %}" class="icon">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-3 mb-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="font-weight-bold athletix-red-text text-uppercase mb-1 small">100/50/30</div>
+                                        <div class="h5 mb-0 text-gray-800">
+                                            {{get_hundreds_count}}/{{get_fifties_count}}/{{get_thirties_count}}
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <img src="{% static 'images/icons/tons.png' %}" class="icon">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-3 mb-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col">
+                                        <div class="font-weight-bold athletix-red-text text-uppercase mb-1 small">Average</div>
+                                        <div class="h5 mb-0 text-gray-800">{{batting_avg|floatformat:2}}</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <img src="{% static 'images/icons/average.png' %}" class="icon">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-3 mb-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="font-weight-bold athletix-red-text text-uppercase mb-1 small">Strike Rate</div>
+                                        <div class="h5 mb-0 text-gray-800">{{get_overall_strike_rate|floatformat:2}}</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <img src="{% static 'images/icons/bat.png' %}" class="icon">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-3 mb-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="font-weight-bold athletix-red-text text-uppercase mb-1 small">Wickets</div>
+                                        <div class="h5 mb-0 text-gray-800">{{get_total_wickets}}</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <img src="{% static 'images/icons/stumps.png' %}" class="icon">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-3 mb-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="font-weight-bold athletix-red-text text-uppercase mb-1 small">5 fer</div>
+                                        <div class="h5 mb-0 text-gray-800">{{get_fifer_count}}</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <img src="{% static 'images/icons/5fers.png' %}" class="icon">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-3 mb-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="font-weight-bold athletix-red-text text-uppercase mb-1 small">Economy Rate</div>
+                                        <div class="h5 mb-0 text-gray-800">{{get_economy_rate|floatformat:2}}</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <img src="{% static 'images/icons/economy.png' %}" class="icon">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-3 mb-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="font-weight-bold athletix-red-text text-uppercase mb-1 small">Man of the match</div>
+                                        <div class="h5 mb-0 text-gray-800">{{get_man_of_the_match}}</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <img src="{% static 'images/icons/motm.png' %}" class="icon">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!------------------------------------ Deactivate Account Modal ------------------------------->
+    <div class="modal fade" id="deactivateAccount" tabindex="-1" role="dialog"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <i class="fa fa-times-circle justify-content-center text-warning fa-5x"></i>
+                    <h4 class="text-warning">Are you sure?</h4>
+                    <p>Do you really want to deactivate your account?</p>
+                </div>
+                <form class="form form-group text-center">
+                    <label for="deactivate_reason">Reason: </label>
+                    <select id="deactivate_reason" class="form-control-sm">
+                        <option value="temporary">This is temporary, I will be back</option>
+                        <option value="new_account">I have another account</option>
+                        <option value="no_athletix_user">No longer a part of AthletiX</option>
+                    </select>
+                </form>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel
+                    </button>
+                    <a href="#" class="btn btn-warning">Deactivate</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!---------------------------------- End Modal -------------------------------->
+
+
+    <!------------------------------------ Deactivate Account Modal ------------------------------->
+    <div class="modal fade" id="deleteAccount" tabindex="-1" role="dialog"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <i class="fa fa-times-circle justify-content-center text-danger fa-5x"></i>
+                    <h4 class="text-danger">Are you sure?</h4>
+                    <p>Do you really want to delete your account? This can not be undone.</p>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel
+                    </button>
+                    <a href="#" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!---------------------------------- End Modal -------------------------------->
+
+</div>
+{% endblock %}

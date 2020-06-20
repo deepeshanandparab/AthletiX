@@ -1,0 +1,88 @@
+{% extends 'athletix/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container my-4">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-center athletix-red-text athletix-official-font mt-4">About</h1>
+        </div>
+        <div class="col-6 col-md-8 my-4">
+            <p class="text-justify small">
+                Hi! Welcome to AthletiX Sports and Fitness Academy. We are here to serve all your sports and fitness needs.
+                Our goal is to make our present and future generation healthy and fit both physically as well as mentally.
+                Fitness is not just for sportspersons or athletes. It is crucial for carrying out our day to day activities and
+                we are here to help you.
+                Together we can achieve the goal of FIT INDIA that our government is pursuing.
+                So, get up, and let's GET YOUR GOALS with ATHLETIX.
+            </p>
+        </div>
+        <div class="col-6 col-md-4 my-4">
+            <div class="card border-0 shadow">
+                <img src="{% static 'images/team/yash_parab.jpg' %}" class="card-img-top" alt="...">
+                <div class="card-body text-center">
+                    <h5 class="card-title mb-0">Academy Head</h5>
+                    <div class="card-text text-black-50">Yashwant Parab</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <h5 class="border-top text-center atletix-blue-text py-4">Meet The Team</h5>
+        </div>
+
+        <!-- Team Member 2 -->
+        <div class="col-6 col-md-3 mb-4">
+            <div class="card border-0 shadow">
+                <img src="{% static 'images/team/anurag_ranaware.jpg' %}" class="card-img-top" alt="...">
+                <div class="card-body text-center">
+                    <h5 class="card-title mb-0">Head Coach</h5>
+                    <div class="card-text text-black-50">Anurag Ranaware</div>
+                </div>
+            </div>
+        </div>
+        <!-- Team Member 3 -->
+        <div class="col-6 col-md-3 mb-4">
+            <div class="card border-0 shadow">
+                <img src="{% static 'images/team/dipesh_morye.jpg' %}" class="card-img-top" alt="...">
+                <div class="card-body text-center">
+                    <h5 class="card-title mb-0">Coach</h5>
+                    <div class="card-text text-black-50">Dipesh Morye</div>
+                </div>
+            </div>
+        </div>
+        <!-- Team Member 4 -->
+        <div class="col-6 col-md-3 mb-4">
+            <div class="card border-0 shadow">
+                <img src="{% static 'images/coach.png' %}" class="card-img-top" alt="...">
+                <div class="card-body text-center">
+                    <h5 class="card-title mb-0">Coach</h5>
+                    <div class="card-text text-black-50">John Doe</div>
+                </div>
+            </div>
+        </div>
+        <!-- Team Member 5 -->
+        <div class="col-6 col-md-3 mb-4">
+            <div class="card border-0 shadow">
+                <img src="{% static 'images/programmer.png' %}" class="card-img-top" alt="...">
+                <div class="card-body text-center">
+                    <h5 class="card-title mb-0">Technical Lead</h5>
+                    <div class="card-text text-black-50">Deepesh Parab</div>
+                </div>
+            </div>
+        </div>
+        <!-- Team Member 6 -->
+        <div class="col-6 col-md-3 mb-4">
+            <div class="card border-0 shadow">
+                <img src="{% static 'images/customer_service.png' %}" class="card-img-top" alt="...">
+                <div class="card-body text-center">
+                    <h5 class="card-title mb-0">Customer Service</h5>
+                    <div class="card-text text-black-50">John Doe</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
