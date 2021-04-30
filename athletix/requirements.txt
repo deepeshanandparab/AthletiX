@@ -19,6 +19,6 @@ sendmail==2.0
 six==1.15.0
 sqlparse==0.3.0
 tablib==2.0.0
-urllib3==1.25.7
+urllib3==1.25.8
 virtualenv==16.7.4
 virtualenv-clone==0.5.3
